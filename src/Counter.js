@@ -1,4 +1,6 @@
-import React, { Component } from "react";
+import React, {
+    Component
+} from "react";
 import Display from "./Display";
 import ButtonsPanel from "./ButtonsPanel";
 import './Counter.css';
@@ -12,8 +14,6 @@ import './Counter.css';
 //     )
 // }
 
-
-
 class Counter extends Component {
 
     constructor(props) {
@@ -21,31 +21,52 @@ class Counter extends Component {
 
         this.state = {
             counterValue: 0,
+            counterName: "BFC",
         }
     }
 
-    incrementOrResetCounter = (increment) => {
-        if (increment) {
-            this.setState((prevState) => {
-                return ({
-                    counterValue: prevState.counterValue + 1,
-                })
-            });
+    incrementOrResetCounter = (myValue) => {
+        if (myValue > 0) {
+            this.incrementCounter();
+        } else if (myValue < 0) {
+            if (this.state.counterValue > 0){
+                this.decrementCounter();
+            } else{
+                console.log("ERROR: wartość nie może być ujemna.");
+            }
         } else {
-            this.setState(() => {
-                return ({
-                    counterValue: 0,
-                })
-            });
+            this.resetCounter();
         }
+    }
+
+    incrementCounter = () => {
+        this.setState((prevState) => {
+            return ({
+                counterValue: prevState.counterValue + 1,
+            })
+        });
+    }
+
+    decrementCounter = () => {
+        this.setState((prevState) => {
+            return ({
+                counterValue: prevState.counterValue - 1,
+            })
+        });
+    }
+
+    resetCounter = () => {
+        this.setState(() => {
+            return ({
+                counterValue: 0,
+            })
+        });
     }
 
     render() {
-        return (
-            <div className="counter">
-                <Display currentValue={this.state.counterValue} />
-                <ButtonsPanel updateCounter={this.incrementOrResetCounter} />
-            </div>
+        return ( <div className = "counter" >
+            <Display currentValue = {this.state.counterValue} counterName = {this.state.counterName} /> <
+            ButtonsPanel updateCounter = {this.incrementOrResetCounter} /> </div>
         )
     }
 

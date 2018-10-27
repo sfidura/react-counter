@@ -8,11 +8,14 @@ class ButtonsPanel extends Component {
     render() {
         return(
             <div className="buttonsPanel">
-                <button onClick={() => this.updateCounter(true)}>
-                    Zwiększ o 1
+                <button onClick={() => this.updateCounter(-1)}>
+                    Zmniejsz o 1
                 </button>
-                <button onClick={() => this.updateCounter(false)}>
+                <button onClick={() => this.updateCounter(0)}>
                     Resetuj Licznik
+                </button>
+                <button onClick={() => this.updateCounter(1)}>
+                    Zwiększ o 1
                 </button>
             </div>
         )

@@ -5,7 +5,7 @@ class Display extends Component{
     render(){
         return(
             <div className="display">
-                Licznik:
+                Licznik {this.props.counterName}:
                 <span className="value">
                     {this.props.currentValue}
                 </span>
