@@ -22,6 +22,7 @@ class Counter extends Component {
         this.state = {
             counterValue: 0,
             counterName: "BFC",
+            counterStep: 1,
         }
     }
 
@@ -42,7 +43,7 @@ class Counter extends Component {
     incrementCounter = () => {
         this.setState((prevState) => {
             return ({
-                counterValue: prevState.counterValue + 1,
+                counterValue: prevState.counterValue + prevState.counterStep,
             })
         });
     }
@@ -50,7 +51,7 @@ class Counter extends Component {
     decrementCounter = () => {
         this.setState((prevState) => {
             return ({
-                counterValue: prevState.counterValue - 1,
+                counterValue: prevState.counterValue - prevState.counterStep,
             })
         });
     }
@@ -63,10 +64,18 @@ class Counter extends Component {
         });
     }
 
+    updateCounterStep = (value) => {
+        this.setState((value) => {
+            return ({
+                counterStep: value,
+            })
+        })
+    }
+
     render() {
         return ( <div className = "counter" >
-            <Display currentValue = {this.state.counterValue} counterName = {this.state.counterName} /> <
-            ButtonsPanel updateCounter = {this.incrementOrResetCounter} /> </div>
+            <Display currentValue = {this.state.counterValue} counterName = {this.state.counterName} /> 
+            <ButtonsPanel updateCounter = {this.incrementOrResetCounter} counterStep = {this.state.counterStep} updateCounterStep = {this.updateCounterStep} /> </div>
         )
     }
 

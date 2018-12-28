@@ -5,18 +5,30 @@ class ButtonsPanel extends Component {
         this.props.updateCounter(update);
     }
 
+    updateCounterStep = (step) => {
+        this.props.updateCounterStep(step);
+    }
+
     render() {
+
+        let step = this.props.counterStep;
+
         return(
             <div className="buttonsPanel">
-                <button onClick={() => this.updateCounter(-1)}>
-                    Zmniejsz o 1
+                <button onClick={() => this.updateCounter((-1) * step)}>
+                    Zmniejsz o {this.props.counterStep}
                 </button>
                 <button onClick={() => this.updateCounter(0)}>
                     Resetuj Licznik
                 </button>
-                <button onClick={() => this.updateCounter(1)}>
-                    Zwiększ o 1
+                <button onClick={() => this.updateCounter(step)}>
+                    Zwiększ o {this.props.counterStep}
                 </button>
+                <hr />
+                    <input type="number" id="step" min="1" required value={this.props.counterStep} onChange={(evt) => this.updateCounterStep(evt)} />
+                    {/* <button onClick={() => this.counterStep()}>
+                        Ustal krok
+                    </button> */}
             </div>
         )
     }
